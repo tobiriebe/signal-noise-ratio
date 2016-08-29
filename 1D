@@ -17,12 +17,12 @@ getConfig()
 reg = makeExperimentRegistry(id = "mytest", packages = c("mlr", "BatchJobs", "BatchExperiments",
          "ROCR", "mboost", "caret", "pROC", "dplyr"))
  
-data <- function(simulations,
+data <- function(simulations ,
                 samples=200,
-                predictors,
+                predictors ,
                 infoVars=50,
-                SNRy=10,
-                SNRx=2,
+                SNRy,
+                SNRx,
                 kappa=5){
     
     #set informative filename from list of parameters
@@ -405,11 +405,11 @@ addAlgorithm(reg, id = "sampledboosting", fun = sampledboosting.wrapper, overwri
 
 
 # Define problem parameters:
-pars = list(simulations = c(500), predictors = c(100, 1000))
+pars = list(simulations = c(500), predictors = c(100), SNRx = c(5,8,10), SNRy = c(2,4,6))
 mytest.design = makeDesign("mytest", exhaustive = pars)
 
 # Define sampledboosting parameters:
-pars = list(sampleRatio = c(0.1, 0.5, 0.9))
+pars = list(sampleRatio = c(0.1)))
 sampledboosting.design = makeDesign("sampledboosting", exhaustive = pars)
 
 
